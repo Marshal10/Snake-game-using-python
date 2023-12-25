@@ -1,14 +1,16 @@
 from turtle import *
 X_COR=0
 MOVE_DISTANCE=20
+
 class Snake:
 	
     def __init__(self):
         self.segments=[]
-        
         self.create_snake()
+        self.head=self.segments[0]
             
     def create_snake(self):
+        global X_COR
         for index in range(3):
             segment=Turtle(shape="square")
             
@@ -26,4 +28,28 @@ class Snake:
             new_y=self.segments[seg_num-1].ycor()
             self.segments[seg_num].goto(new_x,new_y)
         self.segments[0].forward(MOVE_DISTANCE)    
-         
+        
+        
+    def right(self):
+        if self.head.heading()==180:
+            return None
+        self.head.setheading(0) 
+    
+    def up(self):
+        if self.head.heading()==270:
+            return None
+        self.head.setheading(90)
+    
+    def left(self):
+        if self.head.heading()==0:
+            return None
+        self.head.setheading(180)
+    
+    def down(self):
+        if self.head.heading()==90:
+            return None
+        self.head.setheading(270)
+
+    
+        
+       
