@@ -1,4 +1,4 @@
-from turtle import *
+from turtle import Turtle
 X_COR=0
 MOVE_DISTANCE=20
 
@@ -13,7 +13,6 @@ class Snake:
         global X_COR
         for index in range(3):
             segment=Turtle(shape="square")
-            
             segment.penup()
             segment.color("white")
             segment.goto(X_COR,0)
