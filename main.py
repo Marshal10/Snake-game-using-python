@@ -24,19 +24,37 @@ screen.onkey(snake.left,"Left")
 screen.onkey(snake.right,"Right")
 
 
-
-while True:
+game_on=True
+boundary=300
+upper_boundary=320
+left_boundary=320
+while game_on:
     screen.update()
     time.sleep(0.1)    
     snake.move()
-    
     if snake.head.distance(food)<15:
         scoreboard.increase_score()
-        
+        snake.extend()
         food.refresh()
-    
-    if snake.head.xcor()>280 or snake.head.xcor()<-300 or snake.head.ycor()>300 or snake.head.ycor()<-280:
+        
+        
+    if len(snake.segments)==3:
+        boundary=280
+        upper_boundary=300
+        left_boundary=300
+        
+    if snake.head.xcor()>boundary or snake.head.xcor()<-left_boundary or snake.head.ycor()>upper_boundary or snake.head.ycor()<-boundary:
+        game_on=False
         scoreboard.game_over()
-        break
-
+        
+        
+    for segment in snake.segments:
+        if segment==snake.head:
+            pass
+        elif snake.head.distance(segment)<10:
+            game_on=False
+            scoreboard.game_over()
+            break
+            
+    
 screen.exitonclick()
