@@ -1,12 +1,15 @@
 from turtle import Turtle
 ALIGNMENT="center"
 FONT=("Arial",14,"normal")
+
+    
 class Scoreboard(Turtle):
 
     def __init__(self):
         super().__init__()
         self.score=0 
-        self.high_score=0
+        with open("data.txt") as data:
+            self.high_score=int(data.read())
         self.penup()
         self.color("white")
         self.update_score()
@@ -26,12 +29,11 @@ class Scoreboard(Turtle):
     def reset(self):
         if self.score>self.high_score:
             self.high_score=self.score
+            with open("data.txt","w") as data:
+                data.write(f"{self.high_score}")
         self.score=0
         self.clear()    
         self.update_score()
         
         return True
            
-    # def game_over(self):
-    #     self.goto(0,0)
-    #     self.write(f"Game Over.",align=ALIGNMENT,font=FONT)
