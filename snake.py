@@ -53,6 +53,15 @@ class Snake:
         if self.head.heading()==90:
             return None
         self.head.setheading(270)
+        
+    def reset(self):
+        self.segments.clear()
+        self.create_snake()
+        self.head=self.segments[0]    
+        
+    def hide_snake(self):
+        for segment in self.segments:
+            segment.hideturtle()   
 
     
         

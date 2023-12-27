@@ -15,3 +15,6 @@ class Food(Turtle):
         random_x_cor=randint(-280,280)
         random_y_cor=randint(-280,280)
         self.goto(random_x_cor,random_y_cor)
+        
+    
+           
